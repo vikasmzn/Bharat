@@ -1,0 +1,157 @@
+{% extends 'frame.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="site_wrapper">
+
+
+
+    </section>
+    <section class="HomeAbout">
+      {% for obj in about  %}
+      <div class="container">
+        <div class="About_wrap">
+
+          <div class="row">
+
+            <div class="col-sm-9">
+              <div class="about_content">
+                <h3>{{obj.title}}</h3>
+                <h6></h6>
+                <p>{{obj.description}} </p>
+               
+
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="about_logo">
+                <div class="icon_about">
+                  <img src="{{obj.image.url}}" alt="">
+                  <p>{{obj.image_title}}</p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+<style>
+  .icon_about img{
+    margin-left: 48px;
+  }
+</style>
+          </div>
+
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </section>
+    <section class="Found_meber_sect" style="display: none;">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="found_meber_bx">
+              <img src="{% static 'img/found_meber.png' %}" alt="">
+              <h3> Member name</h3>
+              <p> Position</p>
+              <ul>
+                <li>
+                  <a href=""><img src="{% static 'img/twitter.png' %}" alt=""></a>
+                </li>
+                <li> <a href="#"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                </li>
+
+              </ul>
+
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="found_meber_bx">
+              <img src="{% static 'img/found_meber1.png' %}" alt="">
+              <h3> Member name</h3>
+              <p> Position</p>
+              <ul>
+                <li>
+                  <a href=""><img src="{% static 'img/twitter.png' %}" alt=""></a>
+                </li>
+                <li> <a href="#"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                </li>
+
+              </ul>
+
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="found_meber_bx">
+              <img src="{% static 'img/found_meber2.png' %}" alt="">
+              <h3> Member name</h3>
+              <p> Position</p>
+              <ul>
+                <li>
+                  <a href=""><img src="{% static 'img/twitter.png' %}" alt=""></a>
+                </li>
+                <li> <a href="#"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                </li>
+
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    <section class="WhatDo_sect">
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>What We Do</h2>
+          </div>
+          <div class="col-sm-12">
+            <div class="about_point">
+              <ul>
+                      {% for object in What_we_do  %}
+                        <li>
+                            <div class="bx_point">
+                              {% if object.image %}
+                                <div class="bx_icon"> <img src="{{object.image.url}}"></div>
+                                {% else %}
+                                <div class="bx_icon"> <img src=""></div>
+
+                                {% endif %}
+                                <div class="AboutCont_point">
+                                    <h3>{{object.title}}</h3>
+                                    <p>{{object.description}}</p>
+    
+                                </div>
+                            </div>
+                        </li>
+                       
+                       
+                        
+                        {% endfor %}
+                    </ul>
+    
+    
+                </div>
+
+            </div>
+            
+
+        </div>
+    
+    </div>
+
+    </section>
+
+
+  {% endblock content %}
+
+
+    
+</html>

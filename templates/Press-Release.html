@@ -1,0 +1,97 @@
+{% extends 'frame.html' %}
+{% load static %}
+{% block content %}
+    <div class="site_wrapper">
+
+
+        <section class="site_banner Know_banner">
+            <div class="conatiner">
+                <div class="banner_content text-center">
+                    {% for object in press_image  %}
+                    {% if object.image %}
+                    <img src="{{object.image.url}}" >
+                    {% else %}
+                    <img src="" >
+                    {% endif %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </section>
+        <section class="site_media member_bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Press Release
+                        </h2>
+
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="medi_bx_list">
+                         <ul>
+                            {% for object in release  %}
+                            <li>
+                                <div class="bx_media">
+                                    <div class="medi_img">
+                                        {% if object.image %}
+                                        <img src="{{object.image.url}}">
+                                        {% else %}
+                                        <img src="">
+                                        {% endif %}
+        
+                                    </div>
+                                    <div class="medi_cont">
+                                       
+                                        <a href="{{object.hyperlink}}">
+
+                                            <p>{{object.title}}
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+        
+                            </li>
+                            
+                           
+                           
+                            
+                            
+                            
+                            {% endfor %}
+                         </ul>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+      
+
+
+
+        <section class="site_member">
+            <div class="container">
+              <div class="member_wrap">
+                <h2>Our Members</h2>
+                <div class="member_list">
+                  {% for object in our_members  %}
+                  <div class="member_img">
+                    {% if object.image %}
+                    <img src="{{object.image.url}}" alt="">
+                    {% else %}
+                    <img src="" alt="">
+                    {% endif %}
+                  </div>
+                  
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </section>
+        {% endblock content %}
+       
+</html>

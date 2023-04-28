@@ -1,0 +1,133 @@
+{% extends 'frame.html' %}
+{% load static %}
+{% block content %}
+  <div class="site_wrapper">
+
+
+    <section class="site_banner">
+      {% for object in banner_image  %}
+      <div class="conatiner">
+        <div class="banner_content text-center">
+          {% if object.Banner_image %}
+          <img src="{{object.Banner_image.url}}" alt="">
+          {% else %}
+          <img src="" alt="">
+          {% endif %}
+
+          <h1>Growing India’s online economy to<br> <span style="color: #028A6A">$1 Trillion</span> with Web3</h1>
+
+          <p>{{object.title}}</p>
+          <div class="bnr_btn">
+            <!-- <button class="btn outline-btn">Letter to Ministry</button> -->
+            <a class="btn btn-primary" href="{% url 'press-release' %}">{{object.button}}</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="site_vision_site_focus">
+      <div class="container">
+        <div class="site_vision">
+          {% for object in our_vision  %}
+        <div class="">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="vision_content">
+                <h2>{{object.main_heading}}</h2>
+                <h3>{{object.title}}</h3>
+                <p>{{object.description}}</p>
+                <div class="learn_btn">
+                  <a href="{% url 'about_us' %}">{{object.button}}</a>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="vision_img text-center">
+                <img src="{{object.image.url}}" alt="">
+              </div>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="site_focus">
+        <div class="">
+          <div class="">
+            <h2>Our Focus
+              <!-- Seamless Regulatory Navigation -->
+            </h2>
+          </div>
+          
+          <div class="row">
+            {% for object in our_focus  %}
+            <div class="col-lg-4">
+              <div class="focus_bx">
+                <img src="{{object.image.url}}" alt="" style="padding-bottom: 18px;">
+                <h4>{{object.title}}</h4>
+                <p>{{object.description}}</p>
+              </div>
+
+            </div>
+            
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+    </div>
+    </section>
+
+ 
+
+
+    <section class="site_member">
+      <div class="container">
+        <div class="member_wrap">
+          <h2>Our Members</h2>
+          <div class="member_list">
+            {% for object in our_members  %}
+            <div class="member_img">
+              <img src="{{object.image.url}}" alt="">
+            </div>
+            
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="MediaCentre_section">
+      <div class="container">
+        <div class="head">
+          <h3>Media Centre</h3>
+        </div>
+
+        <div class="mcm_b">
+          {% for object in media_center  %}
+          <div class="mc_bx">
+            <div class="img_Media">
+              <a target="_blanck"
+                href="{{object.hyperlink}}"><img
+                  src="{{object.image.url}}">
+              </a>
+            </div>
+            <div class="cnt_bx">
+              <a target="_blanck"
+                href="{{object.hyperlink}}">
+                <p>{{object.title}}
+                </p>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+         
+
+          </div>
+    </section>
+
+{% endblock content %}
+
+</html>

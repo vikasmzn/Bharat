@@ -1,0 +1,272 @@
+{% extends 'frame.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+    .err{
+      color: red ;
+    }
+
+    #err_message{
+      color: red ;
+    }
+
+#success_message{
+color:green;
+}
+{% comment %} #message{
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 999;
+    width: 50%;
+} {% endcomment %}
+#message{
+    position: fixed;
+    top: 59px;
+    right: 0px;
+    transform: translate(-50%, 0);
+    z-index: 999;
+    width: auto;
+    height: 49px;
+    text-align: center;
+    padding: 10px;
+    left: 1101px;
+}
+#message p{
+    margin-right: 0px;
+}
+
+  </style>
+
+
+
+
+
+    <div class="site_wrapper">
+
+
+        <section class="site_ContactUs">
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm-6">
+                    
+                    <div class="contact_left_sect">
+                        {% for object in contact  %}
+                        <h3>{{object.main_heading}}</h3>
+                        <h4>{{object.title}}</h4>
+                        <p> {{object.description}}</p>
+                        <ul>
+                            <li>Alps Building, 56 Janpath, UGF, <br> New Delhi 110001</li>
+                            <li>secretariat@bharatweb3association.com</li>
+                            <li>+91 11 40450114</li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                
+                
+                <div class="col-sm-6" >
+                    
+                    <div class="alert alert-success"  id="message">
+                     {% if messages %}
+                     {% for message in messages  %}
+                     <p>{{message}}</p>
+                     {% endfor %}
+                     {% endif %}
+
+                    </div>
+                    <form class=""  method="post" id="bharat_contactus">
+                        {% csrf_token %}
+                        <div class="contact_form">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Full Name <span _>*</span></label>
+                                    <input type="text" placeholder="Enter your name here" id="fullName" name="fullName" class="form-control" >
+                                    <span id="error_fullName" class="err"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="Official-Email-ID">Official Email ID <span _>*</span></label>
+                                        <input type="text" placeholder="Enter your email here"class="form-control" id="emailId" name="emailId" >
+                                        <span id="error_emailId" class="err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="Designation">Designation <span _>*</span></label>
+                                        <input type="text" placeholder="Enter your designation here"class="form-control" id="designation" name="designation" >
+                                        <span id="error_designation" class="err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="Company Name">Company Name <span _>*</span></label>
+                                        <input type="text" placeholder="Your company name here "class="form-control" id="compnayName" name="compnayName" >
+                                        <span id="error_compnayName" class="err"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="Phone Number">Phone Number <span _>*</span></label>
+                                        <input type="text" placeholder="+91 - XXXXXXXXXX "class="form-control" id="phoneNumber" name="phoneNumber" onkeypress="return onlyNumbers(event);">
+                                        <span id="error_phoneNumber" class="err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Leave us a note <span _>*</span></label>
+                                    <textarea placeholder="Type Your Message" class="form-control" id="description" name="description" ></textarea>
+                                    <span id="error_description" class="err"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="submit_btn">
+                                    <button class="btn btn-fill" href = {% url 'contact_us' %} id="contact_form" onclick="validateContactForm()">Submit</button>
+                                  </div>
+                            </div>
+                            <span id="success_message"></span>
+                            {% comment %} <div class="alert alert-success" id="succes" role="alert"><p>
+                                Thank you for contacting us
+                            </p></div> {% endcomment %}
+
+                            
+                        </div>
+                    </form>
+                </div>
+                </div>
+
+            </div>
+        </section>
+        {% comment %} <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('#succes').style.display = 'none';
+            });
+
+            document.addEventListener('DOMContentLoaded',function(){
+                document.querySelector("#contact_form").addEventListener('click',function(){
+                    document.querySelector('#succes').style.display = 'block';
+
+                })
+            })
+        </script> {% endcomment %}
+
+
+        <script>
+
+            // cache:false,
+            //        contentType:false,
+            //        processData:false,
+              function validateContactForm(){
+                
+                 var name=$('#fullName').val() ;
+                 var emailId=$('#emailId').val() ;
+                 var designation=$('#designation').val() ;
+                 var compnayName=$('#compnayName').val() ;
+                 var phoneNumber=$('#phoneNumber').val() ;
+                 var description=$('#description').val() ;
+                 var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+                 var phoneno = /^\d{10}$/;
+     
+                 $('.err').html('');
+                 if(name==''){
+                  $('#error_fullName').html('Please enter name.') ;
+                 }else if(emailId==''){
+                   $('#error_emailId').html('Please enter email.') ;
+                 }else if(reg.test(emailId) == false){
+                   $('#error_emailId').html('Please enter valid email.') ;
+                 }else if(designation==''){
+                   $('#error_designation').html('Please enter designation.') ;
+                 }else if(compnayName==''){
+                   $('#error_compnayName').html('Please enter company name.') ;
+                 }else if(phoneNumber==''){
+                   $('#error_phoneNumber').html('Please enter phone number.') ;
+                 }else if(description==''){
+                   $('#error_description').html('Please enter description.') ;
+                   
+                   
+                 }else{
+                   submit_contact();
+                 }          
+     
+              }
+              
+
+     
+            
+     
+            function onlyNumbers(event) {
+           
+            var charCode = (event.which) ? event.which : event.keyCode
+        
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+              return false;
+     
+            return true;
+          }
+        
+
+
+         
+     
+        
+         
+          
+
+        $(document).ready(function(){
+    $('#message').removeClass('alert')
+    $('#message').hide()
+}); 
+    $('#contact_form').click(function(event){
+        
+        $('#message').addClass('alert')
+        $('#message').toggle()
+        
+        setTimeout(function(){
+            $('#message').removeClass('alert')
+            $('#message').hide()
+
+        },4500)
+
+    })
+    
+
+
+        
+
+            
+               
+            </script>
+        
+
+        
+          
+
+
+         
+
+     
+         
+
+        
+
+
+
+
+
+        {% endblock content %}
+
+</html>

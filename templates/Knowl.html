@@ -1,0 +1,129 @@
+{% extends 'frame.html' %}
+{% load static %}
+{% block content %}
+    <div class="site_wrapper">
+        <section class="top_know_sect">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Knowledge Centre</h2>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="top_head_bx">
+                            <h6>
+                              <span><img src="{% static 'img/Interviews.svg' %}" class="icon_know"></span>
+                              Interviews 
+                              <img class="arow_icon" src="{% static 'img/chevron-double-up2.svg' %}" alt="">
+                            </h6>
+                        </div>
+
+                    </div>
+             <!--        <div class="col-sm-6">
+                        <div class="top_head_bx">
+                            <h5><img src="img/Education.svg" class="icon_know"> Education <img
+                                    src="img/chevron-double-up1.svg" alt=""></h5>
+                        </div>
+
+                    </div> -->
+
+                </div>
+            </div>
+
+        </section>
+        <section class="Intervi_sect">
+            <div class="container">
+                <div class="row">
+                    
+                    <!--    <div class="col-sm-12">
+                        <h3>Interviews</h3>
+                    </div> -->
+                    <ul>
+                        {% for obj in interview  %}
+                        
+                    <li>
+                      <a class="ank_btn" target="_blanck" href="{{obj.hyperlink}}"></a>
+                        <div class="box_grn_inter">
+                            <p class="icon_comm"><img src="{% static 'img/com.png' %}" alt=""></p>
+                            <p>{{obj.title}}</p>
+                            <div class="bottm_btn_nw">
+                                {% if obj.icon %}
+                              <div class="btm_bx_inter"><a href="#"><img src="{{obj.icon.url}}" alt=""> {{obj.icon_title}}</a></div>
+                               {% else %}
+                               <p class="icon_comm"><img src="" alt=""></p>
+                               {% endif %}
+                              <div class="arrow_icon">
+                                <img src="{% static 'img/arrow1.svg' %}"> 
+                              </div>                            
+                            </div>
+                        </div>
+                      
+                    </li>
+                   
+
+                   
+
+                    {% endfor %}
+                    </ul>
+                   
+
+
+                </div>
+                
+            </div>
+        </section> 
+
+
+       
+        <section class="Intervi_sect mb-178">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="top_head_bx">
+                            <h5>
+                              <span><img src="{% static 'img/Education.svg' %}" class="icon_know"> </span>Education 
+                              <img class="arow_icon" src="{% static 'img/chevron-double-up1.svg' %}" alt=""></h5>
+                        </div>
+                    </div>
+
+                    <ul>
+                        {% for obj in education  %}
+                        <li>
+                          <a class="ank_btn" target="_blanck" href="{{obj.hyperlink}}"></a>
+                            <div class="box_img_inter">
+                               <div class="thum_img_inter">
+                                {% if obj.image%}
+                                <img src="{{obj.image.url}}" alt="">
+                                {% else%}
+                                <img class="arow_icon" src="" alt=""></h5>
+                                {% endif %}
+
+                               </div>
+                               <div class="thumb_cont">
+                                <h5>{{obj.title}}</h5>
+                                {% if obj.icon%}
+                                <div class="btm_bx_inter"><img src="{{obj.icon.url}}" alt="">{{obj.icon_title}}</div>
+                                {% else%}
+                                <img class="arow_icon" src="" alt=""></h5>
+                                {%endif%}
+                              </div>
+                            </div>    
+                        </li>
+                          
+                    
+                   
+                    {% endfor %}
+                  </ul>               
+                </div>
+
+            </div>
+        </section>
+
+
+
+
+
+
+
+        {% endblock content %}
+
+</html>
